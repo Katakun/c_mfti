@@ -5,9 +5,9 @@
 
 // сравнивает числа a и b с точностью до EPS
 // как это работает, поймем позже
-int eps(float a, float b) { return fabs(33.8 - fahr(1)) < EPS; }
+// int eps(float a, float b) { return fabs(33.8 - fahr(1)) < EPS; }
 
-float fahr(int cel) { return (cel * 1.8) + 32; }
+// float fahr(int cel) { return (cel * 1.8) + 32; }
 
 int main() {
     int cel;
