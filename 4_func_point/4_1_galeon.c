@@ -18,9 +18,11 @@ int main() {
 
     int all_total_k = total_k + total_s * 29 + total_g * 17 * 29;
 
-    int g = all_total_k % (29 * 17);
-    int s =
+    g = all_total_k / (29 * 17);
+    s = all_total_k % (29 * 17) / 29;
+    k = all_total_k % (29 * 17) % 29;
 
-        printtf("%d %d %d", g, s, k);
+    printf("%d %d %d", g, s, k);
+
     return 0;
 }
