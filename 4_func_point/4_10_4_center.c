@@ -1,14 +1,23 @@
 #include <stdio.h>
 
-void move(int *px, int *py, int dx, int dy) {
-    *px = *px + dx;
-    *py = *py + dy;
+void center(int xlt, int ylt, int xrb, int yrb, int *pxc, int *pyc) {
+    int height, width;
+
+    height = ylt - yrb;
+    width = xrb - xlt;
+
+    *pxc = xrb - width / 2;
+    *pyc = ylt - height / 2;
 }
 
 int main() {
-    int x, y, dx, dy;
-    scanf("%d%d%d%d", &x, &y, &dx, &dy);
-    move(&x, &y, dx, dy);
-    printf("%d %d\n", x, y);
+    int xlt, ylt, xrb, yrb;
+    int pxc;
+    int pyc;
+
+    scanf("%d%d%d%d", &xlt, &ylt, &xrb, &yrb);
+
+    center(xlt, ylt, xrb, yrb, &pxc, &pyc);
+    printf("%d %d\n", pxc, pyc);
     return 0;
 }
