@@ -1,4 +1,5 @@
 #define DELITEL
+
 #include <stdio.h>
 
 #ifdef DELITEL
@@ -13,6 +14,7 @@ int main() {
 
     return 0;
 }
+#endif
 
 void printFactor(unsigned int last, unsigned int n) {
     if (n == 0) return;
@@ -22,23 +24,25 @@ void printFactor(unsigned int last, unsigned int n) {
         printf("%u^%u ", last, n);
 }
 
-#endif
-
 void simpleFactors(unsigned int a, unsigned int last, unsigned int n) {
-    // printf("a = %2d, last = %d, n = %d\n", a, last, n);
+    printf("a: %3d last: %d n: %d\n", a, last, n);
 
-    if (a == 0) return;
+    // точка возврата
     if (a == 1) {
-        printFactor(last, n);
         return;
     }
 
+    // если число делится на делитель
     if (a % last == 0) {
         a = a / last;
         n = n + 1;
         simpleFactors(a, last, n);
-    } else {
-        printFactor(last, n);
+
+        // печатаем делитель после возврати из рекурсии
+        if (a % last != 0) printFactor(last, n);
+    }
+    // если не делится, то увеличиваем делитель и обнуляем степень
+    else {
         last = last + 1;
         n = 0;
         simpleFactors(a, last, n);
