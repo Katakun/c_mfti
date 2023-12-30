@@ -18,15 +18,18 @@ int main() {
 int rusMult(int a, int b) {
     printf("%d %d\n", a, b);
 
-    if (b == 1) return a;
+    if (b == 1) {
+        printf("%d\n", a);
+        return a;
+    }
 
     int ost = b % 2;
-    b = b / 2;
-    a = a * 2;
-    int res = rusMult(a, b);
-    printf("%d %d %d %d\n", res, a / 2, ost, res + a / 2);
-    if (ost == 1) {
-        res = res + a / 2;
-    }
+    int res = rusMult(a * 2, b / 2);
+
+    printf("%d %d %d ", res, a, ost);
+
+    if (ost == 1) res = res + a;
+    printf("%d\n", res);
+
     return res;
 }
