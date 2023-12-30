@@ -16,11 +16,17 @@ int main() {
 #endif
 
 int rusMult(int a, int b) {
-    printf("a: %d b: %d\n", a, b);
-    if (b < 0) return;
+    printf("%d %d\n", a, b);
 
-    int rem = b % 2;
-    if (rem == 1) {
-        /* code */
+    if (b == 1) return a;
+
+    int ost = b % 2;
+    b = b / 2;
+    a = a * 2;
+    int res = rusMult(a, b);
+    printf("%d %d %d %d\n", res, a / 2, ost, res + a / 2);
+    if (ost == 1) {
+        res = res + a / 2;
     }
+    return res;
 }
