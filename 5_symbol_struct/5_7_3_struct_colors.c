@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 
 typedef struct {
@@ -44,13 +45,29 @@ int main() {
 
 Color getColor() {
     Color color;
-    unsigned char red;
-    unsigned char green;
-    unsigned char blue;
-    scanf("%u %u %u", &color.red, &color.green, &color.blue);
+    scanf("%hhu %hhu %hhu", &color.red, &color.green, &color.blue);
     return color;
 }
 
-void printRGB(Color color) { printf("%d %d %d", color.red, color.green, color.blue); }
+void printRGB(Color color) { printf("%d %d %d\n", color.red, color.green, color.blue); }
 
-unsigned long long convertToHTML(Color) {}
+void printHTML(Color color) { printf("%02X%02X%02X\n", color.red, color.green, color.blue); }
+
+unsigned long long convertToHTML(Color color) {
+    int red = color.red * pow(256, 2);
+    int green = color.green * pow(256, 1);
+    int blue = color.blue * pow(256, 0);
+    long long html = red + green + blue;
+    return html;
+}
+
+Color convertToRGB(unsigned long long html) {
+    int blue = html % 256;
+    int green = (html - blue) % 65536 / 256;
+    int red = (html - blue - green) / 65536;
+    Color color;
+    color.red = red;
+    color.green = green;
+    color.blue = blue;
+    return color;
+}
