@@ -10,7 +10,7 @@ int main() {
     } else if (a == b) {
         score = 1;
     }
+    
     printf("%d\n", score);
-
     return 0;
 }
