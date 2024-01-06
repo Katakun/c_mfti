@@ -13,7 +13,7 @@
                 "${workspaceFolder}/build/${fileBasenameNoExtension}.out",
                 "-Wall",
                 "-Wextra",
-                // "-Werror",
+                "-Werror",
                 "-std=c11",
                 "-lm",
                 // "-O", // включена оптимизация)
