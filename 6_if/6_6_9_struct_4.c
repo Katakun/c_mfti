@@ -29,19 +29,27 @@ int main() {
 }
 
 int is_crossed(struct Rect a, struct Rect b) {
-    int res = 0;
-    if ((a.rb.x > b.lt.x && a.rb.x < b.rb.x) && (a.lt.y > b.rb.y && a.lt.y < b.lt.y) ||
-        (a.rb.x > b.lt.x && a.rb.x < b.rb.x) && (a.rb.y > b.rb.y && a.rb.y < b.lt.y) ||
-        (a.lt.x > b.lt.x && a.lt.x < b.rb.x) && (a.rb.y > b.rb.y && a.rb.y < b.lt.y) ||
-        (a.lt.x > b.lt.x && a.lt.x < b.rb.x) && (a.lt.y > b.rb.y && a.lt.y < b.lt.y)) {
-        res = 1;
-    }
-    if ((b.rb.x > a.lt.x && b.rb.x < a.rb.x) && (b.lt.y > a.rb.y && b.lt.y < a.lt.y) ||
-        (b.rb.x > a.lt.x && b.rb.x < a.rb.x) && (b.rb.y > a.rb.y && b.rb.y < a.lt.y) ||
-        (b.lt.x > a.lt.x && b.lt.x < a.rb.x) && (b.rb.y > a.rb.y && b.rb.y < a.lt.y) ||
-        (b.lt.x > a.lt.x && b.lt.x < a.rb.x) && (b.lt.y > a.rb.y && b.lt.y < a.lt.y)) {
-        res = 1;
-    }
+    int res = 1;
 
+    if (a.lt.x > b.rb.x || a.rb.x < b.lt.x || a.lt.y < b.rb.y || a.rb.y > b.lt.y) {
+        res = 0;
+    }
     return res;
 }
+
+// int is_crossed(struct Rect a, struct Rect b) {
+//     int res = 0;
+//     if ((a.rb.x > b.lt.x && a.rb.x < b.rb.x) && (a.lt.y > b.rb.y && a.lt.y < b.lt.y) ||
+//         (a.rb.x > b.lt.x && a.rb.x < b.rb.x) && (a.rb.y > b.rb.y && a.rb.y < b.lt.y) ||
+//         (a.lt.x > b.lt.x && a.lt.x < b.rb.x) && (a.rb.y > b.rb.y && a.rb.y < b.lt.y) ||
+//         (a.lt.x > b.lt.x && a.lt.x < b.rb.x) && (a.lt.y > b.rb.y && a.lt.y < b.lt.y)) {
+//         res = 1;
+//     }
+//     if ((b.rb.x > a.lt.x && b.rb.x < a.rb.x) && (b.lt.y > a.rb.y && b.lt.y < a.lt.y) ||
+//         (b.rb.x > a.lt.x && b.rb.x < a.rb.x) && (b.rb.y > a.rb.y && b.rb.y < a.lt.y) ||
+//         (b.lt.x > a.lt.x && b.lt.x < a.rb.x) && (b.rb.y > a.rb.y && b.rb.y < a.lt.y) ||
+//         (b.lt.x > a.lt.x && b.lt.x < a.rb.x) && (b.lt.y > a.rb.y && b.lt.y < a.lt.y)) {
+//         res = 1;
+//     }
+//     return res;
+// }
