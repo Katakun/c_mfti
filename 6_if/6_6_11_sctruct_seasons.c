@@ -42,19 +42,19 @@ int main() {
 
 Data getData() {
     int yy;
-    char mm, dd;
+    int mm, dd;
     scanf("%d-%d-%d", &yy, &mm, &dd);
     Data data = {yy, mm, dd};
     return data;
 }
 
-void printData(Data data) { printf("%d-%d-%d", data.yy, data.mm, data.dd); }
+void printData(Data data) { printf("%04d-%02d-%02d\n", data.yy, data.mm, data.dd); }
 
 Season convToSeas(Data data) {
     Season season;
     season.yy = data.yy;
 
-    if (data.mm < 3) {
+    if (data.mm < 3 || data.mm > 11) {
         season.season = 0;  // зима
     } else if (data.mm < 6) {
         season.season = 1;  // весна
@@ -67,9 +67,9 @@ Season convToSeas(Data data) {
     if (season.season == 0) {
         if (data.mm == 12) {
             season.day = data.dd;
-        } else if (data.mm == 0) {
-            season.day = 31 + data.dd;
         } else if (data.mm == 1) {
+            season.day = 31 + data.dd;
+        } else if (data.mm == 2) {
             season.day = 31 + 31 + data.dd;
         }
     }
@@ -103,8 +103,7 @@ Season convToSeas(Data data) {
             season.day = 30 + 31 + data.dd;
         }
     }
-
     return season;
 }
 
-void printSeas(Season s) { printf("%04d-%02d-%02d/n", s.yy, s.season, s.day); }
+void printSeas(Season s) { printf("%04d-%02d-%02d\n", s.yy, s.season, s.day); }
