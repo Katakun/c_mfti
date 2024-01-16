@@ -17,15 +17,15 @@ int main() {
     for (int i = 0; i < number_of_workers - 1; i++) {
         int sum = coins[i] + coins[i + 1];
         if (sum % 2 != 0) {
-            coins[i] = sum / 2;
-            coins[i + 1] = sum / 2;
-        } else {
             coins[i] = (sum - 1) / 2;
             coins[i + 1] = (sum - 1) / 2;
             kupetc_coins++;
+        } else {
+            coins[i] = sum / 2;
+            coins[i + 1] = sum / 2;
         }
-        if (i == number_of_workers - 1 && !is_equal(coins, number_of_workers)) {
-            i = 0;
+        if (i == number_of_workers - 2 && !is_equal(coins, number_of_workers)) {
+            i = -1;
         }
     }
 
