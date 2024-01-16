@@ -24,6 +24,9 @@ int main() {
             coins[i + 1] = (sum - 1) / 2;
             kupetc_coins++;
         }
+        if (i == number_of_workers - 1 && !is_equal(coins, number_of_workers)) {
+            i = 0;
+        }
     }
 
     printf("%d %d\n", kupetc_coins, coins[0]);
