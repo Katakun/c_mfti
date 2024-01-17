@@ -3,28 +3,30 @@
 int is_equal(int[], int);
 
 int main() {
-    int number_of_workers;
-    scanf("%d", &number_of_workers);
+    int workers;
+    scanf("%d", &workers);
 
-    int coins[number_of_workers];
+    int coins[workers];
 
-    for (int i = 0; i < number_of_workers; i++) {
+    for (int i = 0; i < workers; i++) {
         scanf("%d", &coins[i]);
     }
 
     int kupetc_coins = 0;
 
-    for (int i = 0; i < number_of_workers - 1; i++) {
-        int sum = coins[i] + coins[i + 1];
-        if (sum % 2 != 0) {
-            coins[i] = (sum - 1) / 2;
-            coins[i + 1] = (sum - 1) / 2;
-            kupetc_coins++;
-        } else {
+    for (int i = 0; i < workers; i++) {
+        int sum = coins[i] + coins[(i + 1) % workers];
+
+        if (sum % 2 == 0) {
             coins[i] = sum / 2;
-            coins[i + 1] = sum / 2;
+            coins[(i + 1) % workers] = sum / 2;
+        } else {
+            coins[i] = (sum - 1) / 2;
+            coins[(i + 1) % workers] = (sum - 1) / 2;
+            kupetc_coins++;
         }
-        if (i == number_of_workers - 2 && !is_equal(coins, number_of_workers)) {
+
+        if (i == workers - 1 && !is_equal(coins, workers)) {
             i = -1;
         }
     }
