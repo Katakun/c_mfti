@@ -4,7 +4,7 @@
 int main() {
   int n;
   scanf("%d", &n);
-  int arr[n + 1][n + 1];
+  long long int arr[n + 1][n + 1];
   memset(arr, 0, sizeof(arr));
   arr[0][0] = 1;
 
@@ -18,18 +18,19 @@ int main() {
     }
   }
 
-  printf("\nOne line:\n");
+  //   printf("\nOne line:\n");
   for (int i = 0; i <= n; i++) {
-    printf("%d ", arr[n][i]);
+    printf("%lli ", arr[n][i]);
   }
+  printf("\n");
 
-  printf("\n\nTriangle of Pascale:\n");
-  for (int i = 0; i <= n; i++) {
-    for (int j = 0; j <= n; j++) {
-      printf("%d ", arr[i][j]);
-    }
-    printf("\n");
-  }
+  //   printf("\n\nTriangle of Pascale:\n");
+  //   for (int i = 0; i <= n; i++) {
+  //     for (int j = 0; j <= n; j++) {
+  //       printf("%d ", arr[i][j]);
+  //     }
+  //     printf("\n");
+  //   }
 
   return 0;
 }
