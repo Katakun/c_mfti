@@ -1,15 +1,14 @@
 #include <stdio.h>
+#include <string.h>
 #define DECKSIZE 52
 
 struct Card {
-  char rank;  // достоинство 2-9 T J Q K A
-  char suit;  // масть c s h d
+  char rank;  // 2-9 T J Q K A
+  char suit;  // c s h d
 };
 
 void print_cards(struct Card* hand);
-
 void read_cards(struct Card* hand);
-
 int valid_card(struct Card* card);
 
 int main() {
@@ -20,7 +19,7 @@ int main() {
 }
 
 void print_cards(struct Card* hand) {
-  struct Card* p;
+  struct Card* p;  // указатель на одну карту
   for (p = hand; p->rank != 0; p++) {
     printf("%c%c ", p->rank, p->suit);
   }
@@ -38,6 +37,12 @@ void read_cards(struct Card* hand) {
   p->rank = p->suit = 0;
 }
 
+// int valid_card(struct Card* card) {
+//   char* const suit = "cshd";
+//   char* const rank = "23456789TJQKA";
+//   return strchr(suit, card->suit) && strchr(rank, card->rank);
+// }
+
 int valid_card(struct Card* card) {
   // в строках в конце тоже есть "фальшивый" символ '\0'
   char* const suit = "cshd";
@@ -46,7 +51,8 @@ int valid_card(struct Card* card) {
 
   for (i = 0; suit[i] != '\0'; i++) {
     if (suit[i] == card->suit) {  // масть такая существует
-      return 0;
+      break;
+      ;
     }
   }
 
