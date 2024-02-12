@@ -1,6 +1,21 @@
+#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #define DECKSIZE 52
+
+/*
+c - clubs, трефы, ♣
+s - spades, пики, ♠️
+h - hearts, червы, ♥️
+d - diamond, бубны, ♦️
+
+2', '3', '4', '5', '6', '7', '8', '9' - от 2 до 9
+'T' (ten - десять)
+'J' (валет)
+'Q' (дама)
+'K' (король)
+'A' (туз)
+*/
 
 struct Card {
   char rank;  // 2-9 T J Q K A
@@ -10,12 +25,28 @@ struct Card {
 void print_cards(struct Card* hand);
 void read_cards(struct Card* hand);
 int valid_card(struct Card* card);
+int check(struct Card* hand);
 
 int main() {
-  struct Card hand[DECKSIZE + 1];
-  read_cards(hand);
-  print_cards(hand);
-  return 0;
+  // struct Card hand[DECKSIZE + 1];
+  // read_cards(hand);
+  // print_cards(hand);
+
+  struct Card hand1[] = {{'Q', 's'}, {'A', 'h'}, {'9', 'd'}, {0, 0}};
+  struct Card hand2[] = {{'2', 's'}, {'A', 'h'}, {0, 0}};
+  assert(1 == check(hand1));
+  assert(0 == check(hand2));
+}
+
+int check(struct Card* hand) {
+  int result = 0;
+  struct Card* p;
+  for (p = hand; p->rank != 0; p++) {
+    if (p->rank == 'Q' && p->suit == 's') {
+      result = 1;
+    }
+  }
+  return result;
 }
 
 void print_cards(struct Card* hand) {
