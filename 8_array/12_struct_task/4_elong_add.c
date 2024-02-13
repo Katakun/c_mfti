@@ -18,20 +18,53 @@ int main() {
 
   res = add(x, y);   // res = x+y = 1234567890+325 = 1234568215
   elong_print(res);  // print 1234568215
-                     //       1234568215
   return 0;
 }
 
-Decimal add(Decimal x1, Decimal y1) {
+Decimal add(Decimal p1, Decimal p2) {
+  unsigned int i;
+  int x = 0;
+  int e = 0;
+
+  Decimal a, b, res;
+  if (p1.n > p2.n) {
+    a = p1, b = p2;
+  } else {
+    b = p1, a = p2;
+  }
+  for (i = 0; i <= a.n; i++) {
+    // int eold = e;
+    if (i <= b.n) {
+      x = e + a.a[i] + b.a[i];
+    } else {
+      x = e + a.a[i];
+    }
+    res.a[i] = x % 10;
+    e = x / 10;
+
+    // res.n = i;
+    // elong_print(res);
+    // printf("i=%d a.n=%d b.n=%d eold=%d a=%d b=%d x=%2d res=%d e=%d\n", i,
+    // a.n,
+    //        b.n, eold, a.a[i], b.a[i], x, res.a[i], e);
+  }
+  if (e > 0) {
+    res.a[i] = e;
+    res.n = i;
+  } else {
+    res.n = i - 1;
+  }
+  return res;
+}
+
+Decimal add0(Decimal x1, Decimal y1) {
   Decimal sum = {{0}, 0};
   Decimal x = {{0}, 0};
   Decimal y = {{0}, 0};
   if (x1.n >= y1.n) {
-    x = x1;
-    y = y1;
+    x = x1, y = y1;
   } else {
-    x = y1;
-    y = x1;
+    x = y1, y = x1;
   }
   sum.n = x.n;
   char reminder = 0;
