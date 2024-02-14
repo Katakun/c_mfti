@@ -15,8 +15,8 @@
                 "-Wextra",
                 "-Werror",
                 "-std=c11",
-                "-lm",
-                "-g",
+                // "-fsanitize=address"
+                // "-lm",
                 // "-O", // включена оптимизация)
             ],
             "options": {
