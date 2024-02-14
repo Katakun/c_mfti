@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #define ROWS 3
 #define COLS 3
@@ -40,6 +41,36 @@ int sum_diag2(int arr[ROWS][COLS]) {
   return sum;
 }
 
+bool is_rows_equal(int arr[ROWS][COLS]) {
+  bool result = true;
+  int sum = sum_row(arr, 0);
+
+  for (size_t i = 1; i < ROWS; i++) {
+    if (sum != sum_row(arr, i)) {
+      result = false;
+      break;
+    };
+    sum = sum_row(arr, i);
+  }
+
+  return result;
+}
+
+bool is_cols_equal(int arr[ROWS][COLS]) {
+  bool result = true;
+  int sum = sum_col(arr, 0);
+
+  for (size_t i = 1; i < COLS; i++) {
+    if (sum != sum_col(arr, i)) {
+      result = false;
+      break;
+    };
+    sum = sum_col(arr, i);
+  }
+
+  return result;
+}
+
 int main() {
   int square[ROWS][COLS];
 
@@ -58,7 +89,13 @@ int main() {
     printf("\n");
   }
 
-  printf("sum_diag2 = %d\n", sum_diag2(square));
+  if (is_rows_equal(square) && is_cols_equal(square) &&
+      sum_diag(square) == sum_row(square, 0) &&
+      sum_diag2(square) == sum_diag(square)) {
+    printf("MAGIC\n");
+  } else {
+    printf("NO\n");
+  }
 
   return 0;
 }
