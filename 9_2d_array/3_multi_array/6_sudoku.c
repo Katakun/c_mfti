@@ -1,6 +1,34 @@
+#include <stdbool.h>
 #include <stdio.h>
 
-int check_square(int a[9][9], int i0, int j0);
+bool check_square_yes(int a[9][9], int row, int col) {
+  bool result = true;
+  int nums[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+  for (int i = row; i < row + 3; i++) {
+    for (int j = col; j < col + 3; j++) {
+      int index = a[i][j];
+      if (nums[index] == 0) {
+        nums[index] = 1;
+      } else {
+        result = false;
+        break;
+      }
+    }
+  }
+  return result;
+}
+
+bool check_sudoku(int a[9][9]) {
+  bool result = true;
+  for (int i = 0; i < 9; i += 3) {
+    for (int j = 0; j < 9; j += 3) {
+      if (!check_square_yes(a, i, j)) {
+        result = false;
+      }
+    }
+  }
+  return result;
+}
 
 void scan_matrix(int n, int m, int arr[][m]) {
   for (int i = 0; i < n; i++) {
@@ -25,5 +53,6 @@ int main() {
   int arr[n][m];
   scan_matrix(n, m, arr);
   print_matrix(n, m, arr);
+  check_sudoku(arr) ? printf("YES\n") : printf("NO\n");
   return 0;
 }
