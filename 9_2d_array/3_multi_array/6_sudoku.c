@@ -3,7 +3,7 @@
 
 bool check_square_yes(int a[9][9], int row, int col) {
   bool result = true;
-  int nums[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int nums[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   for (int i = row; i < row + 3; i++) {
     for (int j = col; j < col + 3; j++) {
       int index = a[i][j];
@@ -52,7 +52,7 @@ int main() {
   int m = 9;
   int arr[n][m];
   scan_matrix(n, m, arr);
-  print_matrix(n, m, arr);
+  // print_matrix(n, m, arr);
   check_sudoku(arr) ? printf("YES\n") : printf("NO\n");
   return 0;
 }
