@@ -15,9 +15,10 @@
                 "-Wextra",
                 "-Werror",
                 "-std=c11",
-                // "-fsanitize=address"
+                // "-fsanitize=address",
                 // "-lm",
                 // "-O", // включена оптимизация)
+                // "< data.txt"
             ],
             "options": {
                 "cwd": "${fileDirname}"
