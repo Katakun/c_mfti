@@ -4,7 +4,7 @@
 
 int main() {
   // открыть файл data.txt на чтение - поток fin
-  FILE* fin = fopen("data.txt", "r");
+  FILE* fin = fopen("data1.txt", "r");
   if (fin == NULL) {
     perror("data.txt");
     exit(errno);
